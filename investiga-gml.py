@@ -4,7 +4,7 @@ from google.genai import types
 
 st.set_page_config(page_title="Simulador Vocacional", layout="centered")
 
-API_KEY = st.secrets["GEMINI_API_KEY"
+API_KEY = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=API_KEY)
 
 INSTRUCCIONES_IA = """
