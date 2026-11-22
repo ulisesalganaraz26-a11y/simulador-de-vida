@@ -50,7 +50,7 @@ if "respuesta_padres" not in st.session_state:
 
         opción = st.radio(
             "1 Elegí el tipo de padres:",
-            "P.A ( Padrees Acompañantes)", "P.E (Padres Estrictos)"],
+            "P.A ( Padres Acompañantes)", "P.E (Padres Estrictos)"],
             hroizontal=True
         )
         st.session_state.perfil = opcion
