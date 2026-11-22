@@ -66,7 +66,7 @@ else:
    st.writhe("Toca el botón para generar una situación...")
 
 st.markdown("#### Punto de vista :")
- punto_de_vista = st.text_area(
+punto_de_vista = st.text_area(
      label="Escribí que responderías como hijo/a:",
      placeholder="Ej: Les diría que estuve averiguando sobre las salida laboral de esat carrera y...",
      height=130,
