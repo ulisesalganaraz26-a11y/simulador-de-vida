@@ -50,7 +50,7 @@ st.markdown("### Decidiendo mi futuro")
 opcion = st.radio(
      "1 Elegí el tipo de padres:",
      ["P.A ( Padres Acompañantes)", "P.E (Padres Estrictos)"],
-     hroizontal=True
+     horizontal=True
  )
 st.session_state.perfil = opcion
 
