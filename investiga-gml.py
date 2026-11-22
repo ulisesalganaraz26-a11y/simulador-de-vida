@@ -52,7 +52,7 @@ opcion = st.radio(
      ["P.A ( Padres Acompañantes)", "P.E (Padres Estrictos)"],
      hroizontal=True
  )
- st.session_state.perfil = opcion
+st.session_state.perfil = opcion
 
  if st.button("Generar situación", type="primary", use_container_width=True):
    generar_escenario(st.session_state.perfil)
