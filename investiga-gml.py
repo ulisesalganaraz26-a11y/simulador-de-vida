@@ -30,72 +30,73 @@ if "respuesta_padres" not in st.session_state:
     st.session_state.respuesta_padres = ""
 
 
-    def generar_escenario(tipo_padre):
-        st.session_state.respuesta_padres = ""
-        prompt = f"Generá una situacion hipotetica nueva donde el usuario es el hijo/a hablando su futuro vocacional o laboral cons sus {tipo_padre}. Elegí una carrera universitaria, terciaria o trabajo al azar que sea disntinto a los mas obvios."
+def generar_escenario(tipo_padre):
+  st.session_state.respuesta_padres = ""
+  prompt = f"Generá una situacion hipotetica nueva donde el usuario es el hijo/a hablando su futuro vocacional o laboral cons sus {tipo_padre}. Elegí una carrera universitaria, terciaria o trabajo al azar que sea disntinto a los mas obvios."
 
-      with st.spinner("Creando situacón..."):
-        res = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                system_instruction=INSTRUCCIONES_IA,
-                temperature=0,9,
-            ),
-        )
-        st.session_state.situcion = res.text
+  with st.spinner("Creando situacón..."):
+    res = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            system_instruction=INSTRUCCIONES_IA,
+            temperature=0,9,
+        ),
+    )
+    st.session_state.situcion = res.text
 
+ st.markadown("### Decidiendo mi futuro")
 
-        st.markadown("### Decidiendo mi futuro")
+ opcion = st.radio(
+     "1 Elegí el tipo de padres:",
+     ["P.A ( Padres Acompañantes)", "P.E (Padres Estrictos)"],
+     hroizontal=True
+ )
+ st.session_state.perfil = opcion
 
-        opción = st.radio(
-            "1 Elegí el tipo de padres:",
-            ["P.A ( Padres Acompañantes)", "P.E (Padres Estrictos)"],
-            hroizontal=True
-        )
-        st.session_state.perfil = opcion
+ if st.button("Generar situación", type="primary", use_container_width=True):
+   generar_escenario(st.session_state.perfil)
+            
+ st.divider()
 
-        if st.button("Generar situación", type="primary", use_container_width=True):
-            generar_escenario(st.session_state.perfil)
-            st.divider()
+ st.markdown(#### Situacion:")
+ if st.session_state.situacion:
+   st.info(st.session_state.situacion)
+ else:
+   st.writhe("Toca el botón para generar una situación...")
 
-            st.markdown(#### Situacion:")
-            if st.session_state.situacion:
-                stinfo(st.session_state.situacion)
-                else:
-                    st.write("Toca el botón para generar una situación...")
+ st.markdown("#### Punto de vista :")
+ punto_de_vista = st.text_area(
+     label="Escribí que responderías como hijo/a:",
+     placeholder="Ej: Les diría que estuve averiguando sobre las salida laboral de esat carrera y...",
+     height=130,
+ )
 
-            st.markdown("#### Punto de vista :")
-            punto de vista = st.text_area(
-                label="Escribí que responderías como hijo/a:",
-                placeholder="Ej: Les diría que estuve averiguando sobre las salida laboral de esat carrera y...",
-                height=130,
-            )
+ if st.button("Enviar mi punto de vista ", use_container_widht=True):
+   if not st.session_state.situacion:
+     st.warning("Primero toca generar situación' arriba.")
+   elif not punto_de_vista.strip():
+     st.warning("Escribí tu punto de vista en el cuadro antes de enviarlo.")
+   else: 
+     with st.spinner("Los padres están reaccionando..."):
+       prompt_reaccion = f"""
+             Contexto previo: El usuario tiene {st.session_state.perfil}.
+             Situación planteada: { st.session_state.situacion}
+             Respuesta del hijo/a (usuario): "{punto_de_vista}"
 
-            if st.button("Enviar mi punto de vista ", use_container_widht=True):
-                if not st.session_state.situacion:
-                    st.warning("Primero toca generar situación' arriba.")
-                elif not punto_de_vista.strip():
-                        st.warning("Escribí tu punto de vista en el cuadro antes de enviarlo.")
-                        else: 
-                            with st.spinner("Los padres están reaccionando..."):
-                              prompt_reaccion = f"""
-                              Contexto previo: El usuario tiene {st.session_state.perfil}.
-                              Situación planteada: { st.session_state.situacion}
-                              Respuesta del hijo/a (usuario): "{punto_de_vista}"
+             Continua la escena mostrando como reaccioan estos padres según su perfil ({st.session_state.perfil}) ante lo que dijo su hijo/a, y al final agregará una breve reflexion educativa (2 líneas) sobre como influye este tipo de crianza en la eleccion vocacional.
+             """
+                              
+       res_final = client.models.generate_content(
+           model="gemini-2.5-flash",
+           contents=prompt_reaccion,
+           config=types.GenerateContentConfig(
+               system_instruction=INSTRUCCIONES_IA
+           ),   
+       )
+       st.session_state.respuesta_padres = res_final.text
 
-                              Continua la escena mostrando como reaccioan estos padres según su perfil ({st.session_state.perfil}) ante lo que dijo su hijo/a, y al final agregará una breve reflexion educativa (2 líneas) sobre como influye este tipo de crianza en la eleccion vocacional.
-                              """
-                              res_final = client.models.generate_content(
-                                model="gemini-2.5-flash",
-                                contents=prompt_reaccion,
-                                config=types.GenerateContentConfig(
-                                    system_instruction=INSTRUCCIONES_IA
-                                ),   
-                            )
-                            st.session_state.respuesta_padres = res_final.text
-
-            if st.session_state.respuesta_padres:
-              st.markdown("#### Reacción de los padres:")
-              st.success(st.session_state.respuesta_padres)
+if st.session_state.respuesta_padres:
+  st.markdown("#### Reacción de los padres:")
+  st.success(st.session_state.respuesta_padres)
               
