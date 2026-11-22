@@ -45,7 +45,7 @@ def generar_escenario(tipo_padre):
     )
     st.session_state.situcion = res.text
 
- st.markadown("### Decidiendo mi futuro")
+st.markdown("### Decidiendo mi futuro")
 
  opcion = st.radio(
      "1 Elegí el tipo de padres:",
