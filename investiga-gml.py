@@ -40,7 +40,7 @@ def generar_escenario(tipo_padre):
         contents=prompt,
         config=types.GenerateContentConfig(
             system_instruction=INSTRUCCIONES_IA,
-            temperature=0,9,
+            temperature=0.9,
         ),
     )
     st.session_state.situcion = res.text
