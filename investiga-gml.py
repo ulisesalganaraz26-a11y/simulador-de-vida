@@ -59,7 +59,7 @@ if st.button("Generar situación", type="primary", use_container_width=True):
             
 st.divider()
 
-st.markdown(#### Situacion:")
+st.markdown("#### Situacion:")
 if st.session_state.situacion:
    st.info(st.session_state.situacion)
  else:
