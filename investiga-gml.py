@@ -34,7 +34,7 @@ if "respuesta_padres" not in st.session_state:
         st.session_state.respuesta_padres = ""
         prompt = f"Generá una situacion hipotetica nueva donde el usuario es el hijo/a hablando su futuro vocacional o laboral cons sus {tipo_padre}. Elegí una carrera universitaria, terciaria o trabajo al azar que sea disntinto a los mas obvios."
 
-        with st.spinner("Creando situacón..."):
+      with st.spinner("Creando situacón..."):
         res = client.models.generate_content(
             model="gemini-2.5-flash",
             contents=prompt,
