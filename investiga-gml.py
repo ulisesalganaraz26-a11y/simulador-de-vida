@@ -24,8 +24,8 @@ Reglas de comportamiento según el perfil elegido:
 
 if "situacion" not in st.session_state:
     st.session_state.situacion = ""
- if "perfil" not in st.session_state:
-        st.session_state.perfil= "P.A (Padres Acompañantes)"
+if "perfil" not in st.session_state:  
+    st.session_state.perfil= "P.A (Padres Acompañantes)"
 if "respuesta_padres" not in st.session_state:
     st.session_state.respuesta_padres = ""
 
