@@ -72,7 +72,7 @@ punto_de_vista = st.text_area(
      height=130,
  )
 
- if st.button("Enviar mi punto de vista ", use_container_widht=True):
+if st.button("Enviar mi punto de vista ", use_container_widht=True):
    if not st.session_state.situacion:
      st.warning("Primero toca generar situación' arriba.")
    elif not punto_de_vista.strip():
