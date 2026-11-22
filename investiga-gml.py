@@ -59,13 +59,13 @@ if st.button("Generar situación", type="primary", use_container_width=True):
             
 st.divider()
 
- st.markdown(#### Situacion:")
+st.markdown(#### Situacion:")
 if st.session_state.situacion:
    st.info(st.session_state.situacion)
  else:
    st.writhe("Toca el botón para generar una situación...")
 
- st.markdown("#### Punto de vista :")
+st.markdown("#### Punto de vista :")
  punto_de_vista = st.text_area(
      label="Escribí que responderías como hijo/a:",
      placeholder="Ej: Les diría que estuve averiguando sobre las salida laboral de esat carrera y...",
