@@ -57,7 +57,7 @@ st.session_state.perfil = opcion
 if st.button("Generar situación", type="primary", use_container_width=True):
    generar_escenario(st.session_state.perfil)
             
- st.divider()
+st.divider()
 
  st.markdown(#### Situacion:")
 if st.session_state.situacion:
