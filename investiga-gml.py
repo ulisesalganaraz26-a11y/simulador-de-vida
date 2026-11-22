@@ -54,13 +54,13 @@ opcion = st.radio(
  )
 st.session_state.perfil = opcion
 
- if st.button("Generar situación", type="primary", use_container_width=True):
+if st.button("Generar situación", type="primary", use_container_width=True):
    generar_escenario(st.session_state.perfil)
             
  st.divider()
 
  st.markdown(#### Situacion:")
- if st.session_state.situacion:
+if st.session_state.situacion:
    st.info(st.session_state.situacion)
  else:
    st.writhe("Toca el botón para generar una situación...")
