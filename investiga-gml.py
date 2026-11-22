@@ -62,7 +62,7 @@ st.divider()
 st.markdown("#### Situacion:")
 if st.session_state.situacion:
    st.info(st.session_state.situacion)
- else:
+else:
    st.writhe("Toca el botón para generar una situación...")
 
 st.markdown("#### Punto de vista :")
