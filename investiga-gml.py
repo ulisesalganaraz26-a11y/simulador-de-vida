@@ -7,7 +7,7 @@ st.set_page_config(page_title="Simulador Vocacional", layout="centered")
 API_KEY = st.secrets["GEMINI_API_KEY"
 client = genai.Client(api_key=API_KEY)
 
-INSTRUCTIONS_IA = """
+INSTRUCCIONES_IA = """
 sos un simulador educativo de orientación vocacional y vinculos familiares.
 Tu objetivo es crear situaciones hipoteticas realistas donde el usuario asume el rol de un hijo/a hacen preguntas abiertas; ofrecen apoyo sin imponer y ayudan a explorar opciones sin presionar.
 
@@ -50,7 +50,7 @@ if "respuesta_padres" not in st.session_state:
 
         opción = st.radio(
             "1 Elegí el tipo de padres:",
-            ´"P.A ( Padrees Acompañantes)", "P.E (Padres Estrictos)"],
+            "P.A ( Padrees Acompañantes)", "P.E (Padres Estrictos)"],
             hroizontal=True
         )
         st.session_state.perfil = opcion
