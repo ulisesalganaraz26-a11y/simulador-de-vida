@@ -36,7 +36,7 @@ def generar_escenario(tipo_padre):
 
   with st.spinner("Creando situacón..."):
     res = client.models.generate_content(
-        model="gemini-2.5-flash-elite",
+        model="gemini-2.5-flash-lite",
         contents=prompt,
         config=types.GenerateContentConfig(
             system_instruction=INSTRUCCIONES_IA,
@@ -88,7 +88,7 @@ if st.button("Enviar mi punto de vista ", use_container_width=True):
              """
                               
        res_final = client.models.generate_content(
-           model="gemini-2.5-flash-elite",
+           model="gemini-2.5-flash-lite",
            contents=prompt_reaccion,
            config=types.GenerateContentConfig(
                system_instruction=INSTRUCCIONES_IA
