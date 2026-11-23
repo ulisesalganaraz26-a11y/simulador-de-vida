@@ -63,7 +63,7 @@ st.markdown("#### Situacion:")
 if st.session_state.situacion:
    st.info(st.session_state.situacion)
 else:
-   st.write("Toca el botón para generar una situación...")
+   st.write("Toca el botón para generar una situacion...")
 
 st.markdown("#### Punto de vista :")
 punto_de_vista = st.text_area(
