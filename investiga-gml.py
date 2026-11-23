@@ -43,7 +43,7 @@ def generar_escenario(tipo_padre):
             temperature=0.9,
         ),
     )
-    st.session_state.situcion = res.text
+    st.session_state.situacion = res.text
 
 st.markdown("### Decidiendo mi futuro")
 
